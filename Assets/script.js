@@ -73,6 +73,8 @@ function showScores() {
     gameOverHTML += "<h2 id='score'> Your scores: " + quiz.score + "</h2>";
     var element = document.getElementById("quiz");
     element.innerHTML = gameOverHTML;
+    localStorage.setItem('quiz.score', JSON.stringify(quiz.score));
+
 };
  
 // create questions here
@@ -83,10 +85,15 @@ var questions = [
     new Question("The external JavaScript file must contain the script tag.", ["True", "False", "maybe", "i don't know"], "False"),
     new Question("Inside which HTML element do we put the JavaScript?", ["script", "js", "javascript", "style"], "script")
 ];
+
  
 // create quiz
 var quiz = new Quiz(questions);
  
 // display quiz
 populate(); 
+
+var retrievedObject = localStorage.getItem('quiz.score');
+
+console.log('retrievedObject: ', JSON.parse(retrievedObject));
 
